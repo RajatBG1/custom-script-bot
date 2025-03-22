@@ -1,30 +1,32 @@
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.Text;
-import net.minecraft.client.gui.screen.option.OptionsScreen;
+package com.rajat.botscript.mixin;
 
+import com.rajat.botscript.CustomNarrationSupplier;
+import com.rajat.botscript.ScriptGui;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.client.network.ClientPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(OptionsScreen.class) // Injecting into the Options screen
-public abstract class ScreenMixin extends Screen {
+@Mixin(Screen.class)
+public class ScreenMixin {
 
-    protected ScreenMixin(Text title) {
-        super(title);
-    }
+    @Shadow
+    private MinecraftClient client;
 
     @Inject(method = "init", at = @At("HEAD"))
-    private void addLolButton(CallbackInfo info) {
-        this.addDrawableChild(new ButtonWidget(
-                this.width / 2 - 100, this.height / 2, 200, 20,
-                Text.of("Lol"),
-                button -> {
-                    // Open your script GUI when clicked
-                    this.client.setScreen(new ScriptGui(this));
-                },
-                new CustomNarrationSupplier()
-        ));
+    public void init(CallbackInfo info) {
+        if (this.client.world != null) {
+            this.client.setScreen(new ScriptGui((Screen) (Object) this));
+        }
+    }
+
+    @Inject(method = "render", at = @At("HEAD"))
+    public void render(CallbackInfo info) {
+        new CustomNarrationSupplier((Screen) (Object) this);
     }
 }

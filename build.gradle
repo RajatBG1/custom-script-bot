@@ -3,11 +3,11 @@ plugins {
 	id 'maven-publish'
 }
 
-version = project.mod_version
-group = project.maven_group
+version = '1.0.0'
+group = 'com.rajat'
 
 base {
-	archivesName = project.archives_base_name
+	archivesName = 'botscriptmod'
 }
 
 repositories {
@@ -17,13 +17,10 @@ repositories {
 }
 
 dependencies {
-	minecraft "net.minecraft:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
+	minecraft "com.mojang:minecraft:1.21.1"
+	mappings "net.fabricmc:yarn:1.21.1+build.1:v2"
+	modImplementation "net.fabricmc:fabric-loader:0.12.11"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:0.102.1+1.21.1"
 	implementation 'org.spongepowered:mixin:0.8.4'
 }
 
