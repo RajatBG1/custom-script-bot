@@ -21,12 +21,12 @@ public class ScreenMixin {
     @Inject(method = "init", at = @At("HEAD"))
     public void init(CallbackInfo info) {
         if (this.client.world != null) {
-            this.client.setScreen(new ScriptGui((Screen) (Object) this));
+            this.client.setScreen(ScriptGui.create((Screen) (Object) this));
         }
     }
 
     @Inject(method = "render", at = @At("HEAD"))
     public void render(CallbackInfo info) {
-        new CustomNarrationSupplier((Screen) (Object) this);
+        new CustomNarrationSupplier((Screen) (Object) this).supply();
     }
 }

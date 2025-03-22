@@ -3,11 +3,16 @@ package com.rajat.botscript;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
+import net.minecraft.client.gui.DrawContext; // Correct import for DrawContext
 
 public class ScriptGui extends Screen {
 
     protected ScriptGui(Screen parent) {
         super(Text.of("Script GUI"));
+    }
+
+    public static ScriptGui create(Screen parent) {
+        return new ScriptGui(parent);
     }
 
     @Override
@@ -17,10 +22,16 @@ public class ScriptGui extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context, mouseX, mouseY, delta);
         // Render GUI components
-        super.render(matrices, mouseX, mouseY, delta);
+        super.render(context, mouseX, mouseY, delta);
+    }
+
+    @Override
+    public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
+        // Custom background rendering logic
+        super.renderBackground(context, mouseX, mouseY, delta);
     }
 
     @Override

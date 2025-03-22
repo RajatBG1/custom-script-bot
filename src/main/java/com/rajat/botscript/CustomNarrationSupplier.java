@@ -1,9 +1,10 @@
 package com.rajat.botscript;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.NarratorManager;
 
-public class CustomNarrationSupplier implements NarratorManager.NarrationSupplier {
+public class CustomNarrationSupplier {
 
     private final Screen screen;
 
@@ -11,9 +12,12 @@ public class CustomNarrationSupplier implements NarratorManager.NarrationSupplie
         this.screen = screen;
     }
 
-    @Override
-    public void supply(NarratorManager.Narration narration) {
-        // Custom narration logic
-        narration.add(NarratorManager.NarrationPriority.DEFAULT, screen.getTitle().getString());
+    public void supply() {
+        try {
+            NarratorManager narratorManager = MinecraftClient.getInstance().getNarratorManager();
+            narratorManager.narrate(screen.getTitle().getString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

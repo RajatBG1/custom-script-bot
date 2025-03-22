@@ -2,12 +2,12 @@
 	"required": true,
 	"minVersion": "0.8",
 	"package": "com.rajat.botscript.mixin",
-	"compatibilityLevel": "JAVA_21",
+	"compatibilityLevel": "JAVA_8",
 	"mixins": [
-		"ExampleMixin"
+		"ExampleMixin",
+		"HandledScreenMixin",
+		"ScreenMixin"
 	],
-	"client": [],
-	"server": [],
 	"injectors": {
 		"defaultRequire": 1
 	}
