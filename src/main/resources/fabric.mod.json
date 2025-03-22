@@ -1,0 +1,15 @@
+{
+	"schemaVersion": 1,
+	"id": "botscriptmod",
+	"version": "1.0.0",
+	"name": "Bot Script Mod",
+	"description": "A mod to automate actions",
+	"authors": ["Rajat"],
+	"entrypoints": {
+		"main": ["com.rajat.botscript.BotScriptMod"]
+	},
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "1.21.1"
+	}
+}

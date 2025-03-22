@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.rajat.botscript.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"HandledScreenMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
